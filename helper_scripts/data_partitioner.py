@@ -1,4 +1,4 @@
-import sys, random,codecs
+import sys, random
 
 def main():
 
