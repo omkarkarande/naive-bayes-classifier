@@ -1,4 +1,6 @@
 datasets/
 resources/
+__pycache__/
 *.feat
 *.txt
+*.model
