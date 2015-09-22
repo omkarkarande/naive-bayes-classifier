@@ -14,11 +14,10 @@ def main():
 
     #Change This Later
     VOCAB_FILE = sys.argv[3]
-    LABELS = ['NEGATIVE', 'POSITIVE']
     #......................
 
-    naive_bayes = NB()
-    naive_bayes.fit(LABELS, VOCAB_FILE, TRAIN_FILE)
+    naive_bayes = NB('TRAIN')
+    naive_bayes.fit(VOCAB_FILE, TRAIN_FILE)
     naive_bayes.train(True)
     naive_bayes.generate_model(MODEL_FILE)
 

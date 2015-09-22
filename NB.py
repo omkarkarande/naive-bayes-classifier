@@ -1,3 +1,4 @@
+import math
 from collections import defaultdict
 
 #################################
@@ -5,7 +6,7 @@ from collections import defaultdict
 #################################
 class NB:
 
-    def __init__(self):
+    def __init__(self, mode):
         #Stores the probabilities of each word
         self.vocab_data = defaultdict()
         #Stores the probability of each label
@@ -14,7 +15,9 @@ class NB:
         #Maps label indices to label meanings
         self.label_mapping = []
         #Stores the words in the vocab (debugging)
-        self.vocab = []
+        if mode == 'TRAIN':
+            self.vocab = []
+            self.labels = []
 
         #Total label count
         self.label_count = 0
@@ -24,15 +27,20 @@ class NB:
         self.words_per_label = []
         self.total_records = 0
 
-        self.was_add_one_used = False
         return
 
+    def init_labels(self, dataset):
+        #detect all labels from training data
+        with open(dataset, 'r') as f:
+            for line in f:
+                line = line.strip().split()
+                if line[0] not in self.labels:
+                    self.labels.append(line[0])
 
-    def init_labels(self, label_list):
-        self.label_count = len(label_list)
+        self.label_count = len(self.labels)
         self.words_per_label = [0] * self.label_count
         i = 0
-        for label in label_list:
+        for label in self.labels:
             self.label_data[i] = 0.0
             self.label_mapping.append((i, label))
             i += 1
@@ -52,9 +60,9 @@ class NB:
         return
 
 
-    def fit(self, labels, vocab, dataset):
+    def fit(self, vocab, dataset):
 
-        self.init_labels(labels)
+        self.init_labels(dataset)
         self.init_vocab(vocab)
 
         with open(dataset, 'r') as f:
@@ -62,7 +70,7 @@ class NB:
                 self.total_records += 1
                 line = line.strip().split()
 
-                label = int(line[0])
+                label = self.labels.index(line[0])
                 line = line[1:]
 
                 #label count
@@ -76,7 +84,6 @@ class NB:
         return
 
     def train(self, add_one):
-        self.was_add_one_used = add_one
         if add_one:
             for i in range(self.label_count):
                 self.words_per_label[i] += self.vocab_size
@@ -94,12 +101,6 @@ class NB:
 
     def generate_model(self, model_file):
         with open(model_file, 'w') as f:
-            #records parsed
-            f.write('TRAINING_RECORDS:' + str(self.total_records) + '\n')
-            #Add one
-            f.write('ADD_ONE:True\n') if self.was_add_one_used else f.write('ADD_ONE:False\n')
-            #vocab size
-            f.write('VOCAB_SIZE:' + str(self.vocab_size) + '\n')
             #label count
             f.write('LABEL_COUNT:' + str(self.label_count) + '\n')
             #label mapping
@@ -117,5 +118,53 @@ class NB:
 
         return
 
-    def classify():
+    def load(self, model):
+        #read from a model
+        with open(model, 'r') as f:
+            #read number of labels
+            line = f.readline().strip().split(':')
+            self.label_count = int(line[1])
+            #read label mappings
+            line = f.readline().strip().split(':')
+            self.label_mapping = eval(line[1])
+            #read label probabilities
+            line = f.readline().strip().split(':')
+            i=0
+            for x in eval(line[1]):
+                self.label_data[i] = float(x)
+                i += 1
+            #read vocab probabilities
+            for line in f:
+                line = line.strip().split(':')
+                self.vocab_data[int(line[0])] = eval(line[1])
+
         return
+
+
+    def P(self, message, label):
+        prob = 0.0
+        for feature in message:
+            feature = feature.split(':')
+            prob += float(feature[1]) * math.log(self.vocab_data[int(feature[0])][label])
+
+        return prob
+
+
+    def classify(self, dataset):
+
+        predictions = []
+        with open(dataset, 'r') as f:
+            for line in f:
+
+                line = line.strip().split()
+                LINE_PROBABILITY = [0.0] * self.label_count
+                for i in range(self.label_count):
+                    LINE_PROBABILITY[i] = math.log(self.label_data[i]) + self.P(line, i)
+
+                MAX = LINE_PROBABILITY.index(max(LINE_PROBABILITY))
+
+                for x in self.label_mapping:
+                    if x[0] == MAX:
+                        predictions.append(x[1])
+
+        return predictions
