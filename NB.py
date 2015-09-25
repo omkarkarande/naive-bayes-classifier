@@ -47,23 +47,22 @@ class NB:
 
         return
 
-
+    """
     def init_vocab(self, vocab_file):
         with open(vocab_file, 'r') as f:
             i = 1
             for line in f:
                 self.vocab.append(line.strip())
-                self.vocab_data[i] = [0.0] * self.label_count
                 i += 1
         self.vocab_size = len(self.vocab)
 
         return
-
+"""
 
     def fit(self, vocab, dataset):
 
         self.init_labels(dataset)
-        self.init_vocab(vocab)
+        #self.init_vocab(vocab)
 
         with open(dataset, 'r') as f:
             for line in f:
@@ -78,6 +77,9 @@ class NB:
                 #go through the entire line
                 for feature in line:
                     feature = feature.split(':')
+                    if int(feature[0]) not in self.vocab_data.keys():
+                        self.vocab_data[int(feature[0])] = [0.0] * self.label_count
+
                     self.vocab_data[int(feature[0])][label] += int(feature[1])
                     self.words_per_label[label] += int(feature[1])
 
@@ -86,7 +88,7 @@ class NB:
     def train(self, add_one):
         if add_one:
             for i in range(self.label_count):
-                self.words_per_label[i] += self.vocab_size
+                self.words_per_label[i] += len(self.vocab_data)
 
         #calculate the word probabilities
         for key, value in self.vocab_data.items():
@@ -124,20 +126,23 @@ class NB:
             #read number of labels
             line = f.readline().strip().split(':')
             self.label_count = int(line[1])
+            print(self.label_count)
             #read label mappings
             line = f.readline().strip().split(':')
             self.label_mapping = eval(line[1])
+            print(self.label_mapping)
             #read label probabilities
             line = f.readline().strip().split(':')
             i=0
             for x in eval(line[1]):
                 self.label_data[i] = float(x)
                 i += 1
+            print(self.label_data)
             #read vocab probabilities
             for line in f:
                 line = line.strip().split(':')
                 self.vocab_data[int(line[0])] = eval(line[1])
-
+            print(self.vocab_data)
         return
 
 
@@ -145,7 +150,8 @@ class NB:
         prob = 0.0
         for feature in message:
             feature = feature.split(':')
-            prob += float(feature[1]) * math.log(self.vocab_data[int(feature[0])][label])
+            if int(feature[0]) in self.vocab_data.keys():
+                prob += float(feature[1]) * math.log(self.vocab_data[int(feature[0])][label])
 
         return prob
 
@@ -162,7 +168,7 @@ class NB:
                     LINE_PROBABILITY[i] = math.log(self.label_data[i]) + self.P(line, i)
 
                 MAX = LINE_PROBABILITY.index(max(LINE_PROBABILITY))
-
+                print(LINE_PROBABILITY)
                 for x in self.label_mapping:
                     if x[0] == MAX:
                         predictions.append(x[1])
