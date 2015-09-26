@@ -1,5 +1,9 @@
 import sys
 
+#---------------------------------#
+#Process the imdb files
+#Label the dataset appropriately
+#---------------------------------#
 def process(ip, op):
     #open the input dataset
     op_file = open(op, 'w')
@@ -7,11 +11,13 @@ def process(ip, op):
         for line in f:
             line = line.strip().split()
 
+            #POS NEG labeling
             if int(line[0]) >= 7:
                 line[0] = 'POSITIVE'
             elif int(line[0]) <= 4:
                 line[0] = 'NEGATIVE'
 
+            #Normalize all the tokens to start from 1
             for x in range(1, len(line)):
                 feature = line[x].split(':')
                 feature[0] = int(feature[0]) + 1
@@ -22,7 +28,7 @@ def process(ip, op):
     op_file.close()
     return
 
-
+#MAIN
 def main():
 
     if len(sys.argv) != 4:

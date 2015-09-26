@@ -9,12 +9,9 @@ def main():
         print("usage: python3 nbclassify.py MODELFILE TESTFILE")
         sys.exit(0)
 
-    MODELFILE = sys.argv[1]
-    TESTFILE = sys.argv[2]
-
     naive_bayes = NB('CLASSIFY')
-    naive_bayes.load(MODELFILE)
-    predictions = naive_bayes.classify(TESTFILE)
+    naive_bayes.load(sys.argv[1])
+    predictions = naive_bayes.classify(sys.argv[2)
 
     with open('predictions.out', 'w') as f:
         for prediction in predictions:

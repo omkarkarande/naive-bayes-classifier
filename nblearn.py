@@ -5,21 +5,14 @@ def main():
 
     #Simple argument consistency check
     #Exit if arguments not specified
-    if len(sys.argv) != 4:
-        print("usage: python3 nblearn.py TRAININGFILE MODELFILE VOCAB")
+    if len(sys.argv) != 3:
+        print("usage: python3 nblearn.py TRAININGFILE MODELFILE")
         sys.exit(0)
-
-    TRAIN_FILE = sys.argv[1]
-    MODEL_FILE = sys.argv[2]
-
-    #Change This Later
-    VOCAB_FILE = sys.argv[3]
-    #......................
-
+        
     naive_bayes = NB('TRAIN')
-    naive_bayes.fit(VOCAB_FILE, TRAIN_FILE)
-    naive_bayes.train(True)
-    naive_bayes.generate_model(MODEL_FILE)
+    naive_bayes.fit(sys.argv[1])
+    naive_bayes.train()
+    naive_bayes.generate_model(sys.argv[2])
 
 if __name__ == "__main__":
     main()

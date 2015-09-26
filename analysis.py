@@ -1,5 +1,9 @@
 import sys
 
+
+#------------------------------------------#
+#Calculate the accuracy of the predictions
+#------------------------------------------#
 def accuracy_score(actual, predictions):
     correct = 0.0
     for i in range(len(actual)):
@@ -8,6 +12,9 @@ def accuracy_score(actual, predictions):
 
     return correct / float(len(actual))
 
+#--------------------------#
+#Calculate the precision
+#--------------------------#
 def precision_score(actual, predictions):
 
     correct_pos = 0.0
@@ -27,6 +34,9 @@ def precision_score(actual, predictions):
 
     return correct_pos/class_pos, correct_neg/class_neg
 
+#--------------------------#
+#Calculate the recall
+#--------------------------#
 def recall_score(actual, predictions):
 
     correct_pos = 0.0
@@ -46,9 +56,13 @@ def recall_score(actual, predictions):
 
     return correct_pos/class_pos, correct_neg/class_neg
 
+#--------------------------#
+#Calculate the f1
+#--------------------------#
 def f1_score(precision, recall):
     return (2 * precision * recall) / (precision + recall)
 
+#MAIN
 def main():
     if len(sys.argv) != 3:
         print("USAGE: python3 analys.py <ACTUAL> <PREDICTIONS>")

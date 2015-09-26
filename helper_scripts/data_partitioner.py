@@ -1,5 +1,6 @@
 import sys, random
 
+#MAIN
 def main():
 
     if len(sys.argv) != 4:
@@ -20,9 +21,10 @@ def main():
     train_data = []
     test_data = []
 
+    #Where to split the data based on percentage passed in the argument
     SPLIT_POINT = int(LEN * TRAIN_PERC / 100)
     if UNIFORM != 1:
-        #shuffle the dataset randomly
+        #Shuffle the dataset randomly
         random.shuffle(data)
 
     train_data = data[:SPLIT_POINT]
