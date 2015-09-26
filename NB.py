@@ -120,7 +120,7 @@ class NB:
 
         #calculate label probabilities
         for key in self.label_data.keys():
-            self.label_data[key] = math.log(self.label_data[key]/float(self.total_records))
+            self.label_data[key] = self.label_data[key]/float(self.total_records)
 
         return
 
