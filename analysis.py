@@ -1,6 +1,5 @@
 import sys
 
-
 #------------------------------------------#
 #Calculate the accuracy of the predictions
 #------------------------------------------#
@@ -23,13 +22,13 @@ def precision_score(actual, predictions):
     class_neg = 0.0
 
     for i in range(len(actual)):
-        if actual[i] == predictions[i] == 'POSITIVE':
+        if actual[i] == predictions[i] == 'POSITIVE' or actual[i] == predictions[i] == 'SPAM':
             correct_pos += 1.0
-        if actual[i] == predictions[i] == 'NEGATIVE':
+        if actual[i] == predictions[i] == 'NEGATIVE' or actual[i] == predictions[i] == 'HAM':
             correct_neg += 1.0
-        if predictions[i] == 'POSITIVE':
+        if predictions[i] == 'POSITIVE' or predictions[i] == 'SPAM':
             class_pos += 1.0
-        if predictions[i] == 'NEGATIVE':
+        if predictions[i] == 'NEGATIVE' or predictions[i] == 'HAM':
             class_neg += 1.0
 
     return correct_pos/class_pos, correct_neg/class_neg
@@ -45,13 +44,13 @@ def recall_score(actual, predictions):
     class_neg = 0.0
 
     for i in range(len(actual)):
-        if actual[i] == predictions[i] == 'POSITIVE':
+        if actual[i] == predictions[i] == 'POSITIVE' or actual[i] == predictions[i] == 'SPAM':
             correct_pos += 1.0
-        if actual[i] == predictions[i] == 'NEGATIVE':
+        if actual[i] == predictions[i] == 'NEGATIVE' or actual[i] == predictions[i] == 'HAM':
             correct_neg += 1.0
-        if actual[i] == 'POSITIVE':
+        if actual[i] == 'POSITIVE' or actual[i] == 'SPAM':
             class_pos += 1.0
-        if actual[i] == 'NEGATIVE':
+        if actual[i] == 'NEGATIVE' or actual[i] == 'HAM':
             class_neg += 1.0
 
     return correct_pos/class_pos, correct_neg/class_neg
@@ -91,12 +90,12 @@ def main():
     f1_neg = f1_score(precision_neg, recall_neg)
 
     print('ACCURACY: ' + str(accuracy * 100) + "%")
-    print('PRECISION(pos): ' + str(precision_pos * 100) + '%')
-    print('PRECISION(neg): ' + str(precision_neg * 100) + '%')
-    print('RECALL(pos): ' + str(recall_pos * 100) + '%')
-    print('RECALL(neg): ' + str(recall_neg * 100) + '%')
-    print('F1(pos): ' + str(f1_pos))
-    print('F1(neg): ' + str(f1_neg))
+    print('PRECISION(pos/spam): ' + str(precision_pos * 100) + '%')
+    print('PRECISION(neg/ham): ' + str(precision_neg * 100) + '%')
+    print('RECALL(pos/spam): ' + str(recall_pos * 100) + '%')
+    print('RECALL(neg/ham): ' + str(recall_neg * 100) + '%')
+    print('F1(pos/spam): ' + str(f1_pos))
+    print('F1(neg/ham): ' + str(f1_neg))
 
 if __name__ == "__main__":
     main()
