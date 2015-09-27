@@ -31,8 +31,8 @@ def process(ip, op):
 #MAIN
 def main():
 
-    if len(sys.argv) != 4:
-        print("USAGE: python3 preprocessor.py INPUT OUTPUT")
+    if len(sys.argv) != 3:
+        print("USAGE: python3 process_imdb.py INPUT OUTPUT")
         sys.exit(0)
 
     process(sys.argv[1], sys.argv[2])
