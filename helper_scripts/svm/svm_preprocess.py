@@ -5,7 +5,7 @@ from collections import defaultdict, OrderedDict
 def main():
 
     if len(sys.argv) != 3:
-        print("USAGE: python3 process_imdb.py INPUT OUTPUT")
+        print("USAGE: python3 svm_preprocess.py INPUT OUTPUT")
         sys.exit(0)
 
     op_file = open(sys.argv[2], 'w')
