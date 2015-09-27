@@ -13,9 +13,8 @@ def main():
     naive_bayes.load(sys.argv[1])
     predictions = naive_bayes.classify(sys.argv[2])
 
-    with open('predictions.out', 'w') as f:
-        for prediction in predictions:
-            f.write(prediction + '\n')
+    for prediction in predictions:
+        print(prediction)
 
 
 
