@@ -5,7 +5,8 @@ from collections import defaultdict
 #Generate a single file from all the email files given in the folder
 #passed as the argument in ip
 #---------------------------------------------------------------------#
-def process(ip, op, vocab):
+def process(ip, op, vocab, testdata):
+    
     VOCAB = defaultdict()
     #Read the vocabulary
     with open(vocab, 'r', encoding='latin1') as f:
@@ -19,18 +20,22 @@ def process(ip, op, vocab):
     op_file = open(op, 'w')
     for root, dirs, files in os.walk(ip):
         #For all files in the give directory
+        if testdata:
+            files = sorted(files)
+
         for x in files:
             print('Processing: ' + x)
 
-            #Check for SPAM or HAM file
-            if 'spam' in x:
-                op_file.write('SPAM ')
-            elif 'ham' in x:
-                op_file.write('HAM ')
-            else:
-                #Do not Process other files
-                print('Skiping File: ' + x)
-                continue
+            if not testdata:
+                #Check for SPAM or HAM file
+                if 'spam' in x:
+                    op_file.write('SPAM ')
+                elif 'ham' in x:
+                    op_file.write('HAM ')
+                else:
+                    #Do not Process other files
+                    print('Skiping File: ' + x)
+                    continue
 
             #Open each file
             with open(root + '/' + x, 'r', encoding='latin1') as f:
@@ -55,11 +60,14 @@ def process(ip, op, vocab):
 
 def main():
 
-    if len(sys.argv) != 4:
-        print("USAGE: python3 preprocessor.py INPUT OUTPUT VOCAB")
+    if len(sys.argv) != 5:
+        print("USAGE: python3 preprocessor.py INPUT OUTPUT VOCAB LABELED/UNLABELED[1/0]")
         sys.exit(0)
 
-    process(sys.argv[1], sys.argv[2], sys.argv[3])
+    if int(sys.argv[4]) == 1:
+        process(sys.argv[1], sys.argv[2], sys.argv[3], False)
+    else:
+        process(sys.argv[1], sys.argv[2], sys.argv[3], True)
 
 if __name__ == "__main__":
     main()
