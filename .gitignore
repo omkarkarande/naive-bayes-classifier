@@ -1,7 +1,9 @@
 datasets/
 resources/
 __pycache__/
+results/
 toolkits/
+*.pyc
 *.feat
 *.txt
 *.model
