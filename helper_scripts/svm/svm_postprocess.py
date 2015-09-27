@@ -4,7 +4,7 @@ import sys
 def main():
 
     if len(sys.argv) != 4:
-        print("USAGE: python3 process_imdb.py INPUT OUTPUT TYPE")
+        print("USAGE: python3 svm_postprocess.py INPUT OUTPUT TYPE")
         sys.exit(0)
 
     op_file = open(sys.argv[2], 'w')
@@ -12,7 +12,7 @@ def main():
         for line in f:
             line = line.strip()
 
-            if line =='1'
+            if float(line) > 0
                 if sys.argv[3] == 'imdb':
                     line = 'POSITIVE'
                 elif sys.argv[3] == 'enron'
