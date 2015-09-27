@@ -205,6 +205,8 @@ class NB:
             for line in f:
 
                 line = line.strip().split()
+                #Strip off the label
+                line = line[1:]
                 #Store the probability for this line for each label
                 LINE_PROBABILITY = [0.0] * self.label_count
                 for i in range(self.label_count):
