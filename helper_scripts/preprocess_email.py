@@ -1,13 +1,13 @@
 import sys, os
-from collections import defaultdict
+from collections import OrderedDict
 
 #---------------------------------------------------------------------#
 #Generate a single file from all the email files given in the folder
 #passed as the argument in ip
 #---------------------------------------------------------------------#
 def process(ip, op, vocab, testdata):
-    
-    VOCAB = defaultdict()
+
+    VOCAB = OrderedDict()
     #Read the vocabulary
     with open(vocab, 'r', encoding='latin1') as f:
         i = 1
@@ -15,7 +15,6 @@ def process(ip, op, vocab, testdata):
             #Map vocabulary to indices
             VOCAB[line.strip()] = [str(i), 0]
             i += 1
-
 
     op_file = open(op, 'w')
     for root, dirs, files in os.walk(ip):
@@ -50,11 +49,10 @@ def process(ip, op, vocab, testdata):
                 if value[1] != 0:
                     op_file.write(value[0] + ':' + str(value[1]) + ' ')
                     #reset for the next file
-                    VOCAB[key][1] = 0
+                    value[1] = 0
 
             #Write a new line
             op_file.write('\n')
-
     op_file.close()
     return
 
