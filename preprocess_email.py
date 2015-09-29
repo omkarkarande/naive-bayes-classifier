@@ -59,7 +59,7 @@ def process(ip, op, vocab, testdata):
 def main():
 
     if len(sys.argv) != 5:
-        print("USAGE: python3 preprocessor.py INPUT OUTPUT VOCAB LABELED/UNLABELED[1/0]")
+        print("USAGE: python3 preprocess_email.py INPUT OUTPUT VOCAB LABELED/UNLABELED[1/0]")
         sys.exit(0)
 
     if int(sys.argv[4]) == 1:

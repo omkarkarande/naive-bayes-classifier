@@ -20,20 +20,8 @@ def main():
             else:
                 line[0] = '0'
 
-
+            #replace ':' with ' '
             op_file.write(' '.join(line).replace(':', ' ') + '\n')
-            """
-            for i in range(1, len(line)):
-                feature = line[i].split(':')
-                FEAT[int(feature[0])] = int(feature[1])
-
-
-            #sort featres
-            od = OrderedDict(sorted(FEAT.items()))
-            for key, value in od.items():
-                op_file.write(str(key) + ':' + str(value) + ' ')
-            """
-            #op_file.write('\n')
 
     op_file.close()
 

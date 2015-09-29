@@ -19,7 +19,7 @@ def process(ip, op):
 def main():
 
     if len(sys.argv) != 3:
-        print("USAGE: python3 process_delabel.py INPUT OUTPUT")
+        print("USAGE: python3 preprocess_delabel.py INPUT OUTPUT")
         sys.exit(0)
 
     process(sys.argv[1], sys.argv[2])

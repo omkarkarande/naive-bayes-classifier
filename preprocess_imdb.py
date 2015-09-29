@@ -35,7 +35,7 @@ def process(ip, op, labels):
 def main():
 
     if len(sys.argv) != 4:
-        print("USAGE: python3 process_imdb.py INPUT OUTPUT LABELED/UNLABELED[1/0]")
+        print("USAGE: python3 preprocess_imdb.py INPUT OUTPUT LABELED/UNLABELED[1/0]")
         sys.exit(0)
 
     if int(sys.argv[3]) == 1:

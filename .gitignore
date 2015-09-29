@@ -3,6 +3,7 @@ resources/
 __pycache__/
 results/
 toolkits/
+ignore/
 *.pyc
 *.feat
 *.txt
