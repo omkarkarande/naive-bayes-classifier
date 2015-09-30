@@ -9,7 +9,7 @@ FORMAT OF THE FILES:
     -FEATURE identifiers start from 1 for all files.
 
 
-The included scripts and their descriptions is given as follows:
+The included scripts and their descriptions are as follows:
 
 
 1.  nblearn.py:
@@ -95,3 +95,8 @@ GENERAL USAGE GUIDELINES
 1.  Always Preprocess all data. The code uses feature identifier values starting from 1 for all classifiers. Preprocessing ensures the data is in
     the format needed by all the codes.
 2.  Alwasy use the preprocessed data for any of the following tasks like svm_preprocess, de-labeling, etc. to make sure all scripts stay compatible.
+
+
+################################################################################
+ANALYSIS AND INFERENCES
+################################################################################
