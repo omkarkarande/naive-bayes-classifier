@@ -99,4 +99,70 @@ GENERAL USAGE GUIDELINES
 
 ################################################################################
 ANALYSIS AND INFERENCES
+IMDB DATA for SENTIMENT PREDICTION
 ################################################################################
+
+1.  Using 75% of the data for training and 25% for testing
+
+    -The above configuration yielded the following results in the different classifiers
+
+
+        a.  Naive Bayes Classifier----------------------------------------------
+            ACCURACY:               85.872%
+            PRECISION(POSITIVE):    88.47457627118645%
+            PRECISION(NEGATIVE):    83.54545454545455%
+            RECALL(POSITIVE):       82.77830637488105%
+            RECALL(NEGATIVE):       89.02163383919923%
+            F1(POSITIVE):           0.855317057184991
+            F1(NEGATIVE):           0.8619665468188212
+
+        b.  SVMLight Classifier-------------------------------------------------
+            ACCURACY:               86.848%
+            PRECISION(POSITIVE):    86.00556070435589%
+            PRECISION(NEGATIVE):    87.75307002987056%
+            RECALL(POSITIVE):       88.29686013320647%
+            RECALL(NEGATIVE):       85.37294155634486%
+            F1(POSITIVE):           0.8713615023474178
+            F1(NEGATIVE):           0.865466448445172
+
+        c.  MegaM Classifier----------------------------------------------------
+            ACCURACY:               88.304%
+            PRECISION(POSITIVE):    88.69009584664536%
+            PRECISION(NEGATIVE):    87.91666666666667%
+            RECALL(POSITIVE):       88.04313352362828%
+            RECALL(NEGATIVE):       88.56958346787214%
+            F1(POSITIVE):           0.8836543052681841
+            F1(NEGATIVE):           0.882419173234679
+
+
+2. Using 25% of the data for training and 75% for testing
+
+    -The above configuration yielded the following results in the different classifiers
+
+
+        a.  Naive Bayes Classifier----------------------------------------------
+            ACCURACY:               83.53066666666666%
+            PRECISION(POSITIVE):    86.56559766763849%
+            PRECISION(NEGATIVE):    80.97297297297297%
+            RECALL(POSITIVE):       79.31402927663211%
+            RECALL(NEGATIVE):       87.73293578958578%
+            F1(POSITIVE):           0.8278130924500947
+            F1(NEGATIVE):           0.8421752018808136
+
+        b.  SVMLight Classifier-------------------------------------------------
+            ACCURACY:               84.0906666667%
+            PRECISION(POSITIVE):    82.2345803842%
+            PRECISION(NEGATIVE):    86.1625282167%
+            RECALL(POSITIVE):       86.9003098622%
+            RECALL(NEGATIVE):       81.2905973805%
+            F1(POSITIVE):           0.845030910697
+            F1(NEGATIVE):           0.836556900992
+
+        c.  MegaM Classifier----------------------------------------------------
+            ACCURACY:               85.136%
+            PRECISION(POSITIVE):    84.11544850498339%
+            PRECISION(NEGATIVE):    86.21408203553412%
+            RECALL(POSITIVE):       86.56907789293729%
+            RECALL(NEGATIVE):       83.7078053455436%
+            F1(POSITIVE):           0.8532462745511031
+            F1(NEGATIVE):           0.8494246042465827
