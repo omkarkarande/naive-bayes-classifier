@@ -166,3 +166,106 @@ IMDB DATA for SENTIMENT PREDICTION
             RECALL(NEGATIVE):       83.7078053455436%
             F1(POSITIVE):           0.8532462745511031
             F1(NEGATIVE):           0.8494246042465827
+
+
+From the above results it is evident that both Naive Bayes and SVMLight took a hit of about 2-3% when the training set was reduced to a third
+of what was used before. Almost all the different parameters of the two classifiers got reduced by only about 2% on a huge drop in the data
+available for training.
+MegaM - Maximum Entropy modeling is clearly the one with the highest accuracy in the list. As Maximum entropy model finds connections
+between tokens unlike Naive Bayes which merely grabs the token probabilities, Maximum Entropy models perform better than naive bayes when the
+data to train on is small.
+As seen from the above example, in both cases MegaM surpasses Naive Bayes in almost all its statistics.
+
+MAXIMUM ACCURACY -  MegaM
+
+PERFORMANCE DROP -  Naive Bayes:    2.3%
+                    SVMLight:       2.8%
+                    MegaM:          3.2%
+
+ROBUSTNESS - Naive Bayes and SVMLight are the most robust of them all with the lowest performance drops
+
+
+################################################################################
+ANALYSIS AND INFERENCES
+ENRON DATA for SPAM/HAM DETECTION
+################################################################################
+
+1.  Using 75% of the data for training and 25% for testing
+
+    -The above configuration yielded the following results in the different classifiers
+
+
+        a.  Naive Bayes Classifier----------------------------------------------
+            ACCURACY:               98.50477391460998%
+            PRECISION(SPAM):        97.97657082002131%
+            PRECISION(HAM):         99.04901243599123%
+            RECALL(SPAM):           99.06676238334529%
+            RECALL(HAM):            97.9385171790235%
+            F1(SPAM):               0.9851865072282706
+            F1(HAM):                0.9849063466084743
+
+        b.  SVMLight Classifier-------------------------------------------------
+            ACCURACY:               95.51432174382994%
+            PRECISION(SPAM):        92.24109224109223%
+            PRECISION(HAM):         99.37205651491365%
+            RECALL(SPAM):           99.4256999282125%
+            RECALL(HAM):            91.5732368896926%
+            F1(SPAM):               0.9569873898773537
+            F1(HAM):                0.9531338226990401
+
+        c.  MegaM Classifier----------------------------------------------------
+            ACCURACY:               98.10844892812106%
+            PRECISION(SPAM):        96.95271453590193%
+            PRECISION(HAM):         99.33234421364985%
+            RECALL(SPAM):           99.35391241923905%
+            RECALL(HAM):            96.85352622061482%
+            F1(SPAM):               0.981386279028541
+            F1(HAM):                0.9807727522431788
+
+
+2. Using 25% of the data for training and 75% for testing
+
+    -The above configuration yielded the following results in the different classifiers
+
+
+        a.  Naive Bayes Classifier----------------------------------------------
+            ACCURACY:               98.1504833964%
+            PRECISION(SPAM):        97.8939810937%
+            PRECISION(HAM):         98.4088717454%
+            RECALL(SPAM):           98.4121255864%
+            RECALL(HAM):            97.8896882494%
+            F1(SPAM):               0.981523695261
+            F1(HAM):                0.981485934119
+
+        b.  SVMLight Classifier-------------------------------------------------
+            ACCURACY:               92.84213054704858%
+            PRECISION(SPAM):        88.01922050186866%
+            PRECISION(HAM):         99.03951701427003%
+            RECALL(SPAM):           99.15794538674365%
+            RECALL(HAM):            86.54676258992806%
+            F1(SPAM):               0.9325715578685371
+            F1(HAM):                0.923726644484259
+
+        c.  MegaM Classifier----------------------------------------------------
+            ACCURACY:               97.62205008106648%
+            PRECISION(SPAM):        96.20637329286798%
+            PRECISION(HAM):         99.1219391540935%
+            RECALL(SPAM):           99.14591603512571%
+            RECALL(HAM):            96.1031175059952%
+            F1(SPAM):               0.9765402843601896
+            F1(HAM):                0.9758918787288446
+
+In contrast to the IMDB data, where SVM performed better than Naive Bayes, we can see here that Naive Bayes is more accurate than SVM.
+This is mainly due to the availability of a richer feature set in the Enron corpus as compared to the IMDB corpus.
+Although the dataset was small in size, each document in this dataset had more tokens as compared to the documents in the sentiment corpus.
+
+The performance drop in the accuracy of Naive Bayes when trained on 25% data rather than 75% is negligible, a mere 0.35%. Whereas, SVM saw a significant drop.
+The performance of MegaM is comparable to Naive Bayes.
+
+MAXIMUM ACCURACY -  NAive Bayes
+
+PERFORMANCE DROP -  Naive Bayes:    0.35%
+                    SVMLight:       2.7%
+                    MegaM:          0.48%
+
+ROBUSTNESS - Naive Bayes and MegaM are the most robust of them all with the least performance drops.
