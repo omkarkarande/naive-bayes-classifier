@@ -57,9 +57,9 @@ The included scripts and their descriptions are as follows:
     -Reads emails from all files from the given directory and compiles them into a single dataset
     -Orders the file according to filename for Testing Data only
     -USAGE: python3 preprocess_email.py INPUT OUTPUT VOCAB LABELED/UNLABELED[1/0]
-            INPUT - Directory with all the emails in
-            OUTPUT - File name for the compiled corpus
-            VOCAB - Path to the vocabulary file
+            INPUT   - Directory with all the emails in
+            OUTPUT  - File name for the compiled corpus
+            VOCAB   - Path to the vocabulary file
             LABELED/UNLABELED   = 1 for LABELED DATA like the Training data where order is not important and labels exist
                                 = 0 for UN-Labeled data like the Testing data where order is important and labels dont exist
 
@@ -92,9 +92,9 @@ The included scripts and their descriptions are as follows:
 GENERAL USAGE GUIDELINES
 ################################################################################
 
-1.  Always Preprocess all data. The code uses feature identifier values starting from 1 for all classifiers. Preprocessing ensures the data is in
+1.  Pre-process all data before running scripts. The code uses feature identifier values starting from 1 for all classifiers. Preprocessing ensures the data is in
     the format needed by all the codes.
-2.  Alwasy use the preprocessed data for any of the following tasks like svm_preprocess, de-labeling, etc. to make sure all scripts stay compatible.
+2.  Always use the preprocessed data for any of the following tasks like svm_preprocess, de-labeling, etc. to make sure all scripts stay compatible.
 
 
 ################################################################################
@@ -104,7 +104,7 @@ IMDB DATA for SENTIMENT PREDICTION
 
 1.  Using 75% of the data for training and 25% for testing
 
-    -The above configuration yielded the following results in the different classifiers
+    -The above configuration yielded the following results for the different classifiers
 
 
         a.  Naive Bayes Classifier----------------------------------------------
@@ -137,7 +137,7 @@ IMDB DATA for SENTIMENT PREDICTION
 
 2. Using 25% of the data for training and 75% for testing
 
-    -The above configuration yielded the following results in the different classifiers
+    -The above configuration yielded the following results for the different classifiers
 
 
         a.  Naive Bayes Classifier----------------------------------------------
@@ -169,10 +169,10 @@ IMDB DATA for SENTIMENT PREDICTION
 
 
 From the above results it is evident that both Naive Bayes and SVMLight took a hit of about 2-3% when the training set was reduced to a third
-of what was used before. Almost all the different parameters of the two classifiers got reduced by only about 2% on a huge drop in the data
+of what was used before. Almost all the different parameters of the two classifiers got reduced by only about 2% on a 33% drop in the data
 available for training.
-MegaM - Maximum Entropy modeling is clearly the one with the highest accuracy in the list. As Maximum entropy model finds connections
-between tokens unlike Naive Bayes which merely grabs the token probabilities, Maximum Entropy models perform better than naive bayes when the
+MegaM - Maximum Entropy modeling is the one with the highest accuracy in the list. As Maximum entropy model finds connections
+between tokens unlike Naive Bayes which merely grabs the token probabilities, Maximum Entropy models performs better than naive bayes when the
 data to train on is small.
 As seen from the above example, in both cases MegaM surpasses Naive Bayes in almost all its statistics.
 
@@ -262,7 +262,7 @@ Although the dataset was small in size, each document in this dataset had more t
 The performance drop in the accuracy of Naive Bayes when trained on 25% data rather than 75% is negligible, a mere 0.35%. Whereas, SVM saw a significant drop.
 The performance of MegaM is comparable to Naive Bayes.
 
-MAXIMUM ACCURACY -  NAive Bayes
+MAXIMUM ACCURACY -  Naive Bayes
 
 PERFORMANCE DROP -  Naive Bayes:    0.35%
                     SVMLight:       2.7%
