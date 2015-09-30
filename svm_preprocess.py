@@ -17,7 +17,7 @@ def main():
 
             if int(sys.argv[3]) == 0:
                 #write 1 for positive and -1 for negative labels
-                if line[0] =='POSITIVE' or line[0] == 'SPAM':
+                if line[0] == 'POSITIVE' or line[0] == 'SPAM':
                     op_file.write('1 ')
                 else:
                     op_file.write('-1 ')
