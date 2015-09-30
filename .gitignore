@@ -6,7 +6,6 @@ toolkits/
 ignore/
 *.pyc
 *.feat
-*.txt
 *.model
 *.out
 *.unlabeled

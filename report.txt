@@ -1,0 +1,30 @@
+1: preprocess_imdb:
+
+process the dataset for imdb data
+options: INPUT, OUTPUT, LABELED/NOT
+1 = LABELED
+0= unlabeled
+if labeled -> number label to POS NEG
+if not labeled -> skips the above step
+
+increments tokens by 1 in either case
+
+2 - data_partitioner
+
+partitions data into given percentages
+options, ipfile, trainpercent uniform or random
+1 = UNIFORM
+0 = random
+saves in TRAIN_PERC.feat file and test_perc
+
+3: delabeler
+unlabels the data
+ip, op
+
+nblnbcnb all ok
+analysis all ok
+
+svm_preprocess all ok
+svm_postprocess ip op imdb/enron
+megam_preprocess AOK
+megam_postprocess AOK

@@ -1,5 +1,5 @@
 import sys, os
-from collections import OrderedDict
+from collections import defaultdict
 
 #---------------------------------------------------------------------#
 #Generate a single file from all the email files given in the folder
@@ -7,7 +7,7 @@ from collections import OrderedDict
 #---------------------------------------------------------------------#
 def process(ip, op, vocab, testdata):
 
-    VOCAB = OrderedDict()
+    VOCAB = defaultdict()
     #Read the vocabulary
     with open(vocab, 'r', encoding='latin1') as f:
         i = 1
@@ -33,6 +33,10 @@ def process(ip, op, vocab, testdata):
                     op_file.write('HAM ')
                 else:
                     #Do not Process other files
+                    print('Skiping File: ' + x)
+                    continue
+            else:
+                if '.txt' not in x:
                     print('Skiping File: ' + x)
                     continue
 
